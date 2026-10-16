@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [0, 4, 8], [2, 4, 6] //diagonals
     ];
 
-    //check winner 
+    //check winner
     function checkWinner() {
         for (const [a, b, c] of winningLines) {
             const first = squares[a].textContent;
@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.add(currentPlayer);
 
                 const winner = checkWinner();
-                if (winner){
-                    status.textContent = "Congratulations! Player " + winner + " is the Winner!";
+                if (winner) {
+                    status.textContent = "Congratulations! " + winner + " is the Winner!";
                     status.classList.add("you-won");
                     gameOver = true;
                 }
@@ -52,4 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.remove("hover");
         });
     }
+
+    //new Game button 
+    const newGameBtn = document.querySelector(".btn");
+
+    newGameBtn.addEventListener("click", () => {
+        for (const item of squares) {
+            item.textContent = "";
+            item.classList.remove("X", "O");
+        }
+        status.textContent = "Move your mouse over a square and click to play an X or an O.";
+        status.classList.remove("you-won");
+
+        currentPlayer = "X";
+        gameOver = false;
+    });
 });
